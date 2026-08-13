@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a1128" />
+      <stop offset="50%" stop-color="#101f42" />
+      <stop offset="100%" stop-color="#070b19" />
+    </linearGradient>
+
+    <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00f2fe" stop-opacity="0" />
+      <stop offset="50%" stop-color="#4facfe" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#00f2fe" stop-opacity="0" />
+    </linearGradient>
+
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+
+    <style>
+      .radar-sweep {
+        transform-origin: 1050px 150px;
+        animation: spin 10s linear infinite;
+      }
+      .flight-path {
+        stroke-dasharray: 8 8;
+        animation: dash 30s linear infinite;
+      }
+      .pulse-dot {
+        animation: pulse 2s ease-out infinite;
+      }
+      .jet-icon {
+        animation: fly 12s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+      }
+      @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+      @keyframes dash {
+        to { stroke-dashoffset: -1000; }
+      }
+      @keyframes pulse {
+        0% { r: 4px; opacity: 1; }
+        100% { r: 25px; opacity: 0; }
+      }
+      @keyframes fly {
+        0% { transform: translate(0px, 40px) rotate(-5deg); }
+        50% { transform: translate(400px, -20px) rotate(2deg); }
+        100% { transform: translate(850px, -60px) rotate(-3deg); }
+      }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="300" rx="16" fill="url(#bgGrad)" stroke="#1e293b" stroke-width="2" />
+
+  <!-- Grid Pattern Overlay -->
+  <g opacity="0.08" stroke="#ffffff" stroke-width="1">
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" />
+    </pattern>
+    <rect width="1200" height="300" fill="url(#grid)" />
+  </g>
+
+  <!-- Radar Graphic Background -->
+  <g transform="translate(0,0)">
+    <circle cx="1050" cy="150" r="120" stroke="#1e3a8a" stroke-width="1.5" fill="none" opacity="0.4" />
+    <circle cx="1050" cy="150" r="80" stroke="#1e3a8a" stroke-width="1.5" fill="none" opacity="0.4" />
+    <circle cx="1050" cy="150" r="40" stroke="#1e3a8a" stroke-width="1.5" fill="none" opacity="0.4" />
+    <line x1="1050" y1="30" x2="1050" y2="270" stroke="#1e3a8a" stroke-width="1" opacity="0.3" />
+    <line x1="930" y1="150" x2="1170" y2="150" stroke="#1e3a8a" stroke-width="1" opacity="0.3" />
+    
+    <!-- Radar Sweep Effect -->
+    <path class="radar-sweep" d="M 1050 150 L 1170 150 A 120 120 0 0 0 1050 30 Z" fill="url(#lineGrad)" opacity="0.3" />
+  </g>
+
+  <!-- Flight Path Curved Line -->
+  <path class="flight-path" d="M 80 220 Q 400 60 1050 150" fill="none" stroke="#00f2fe" stroke-width="2.5" opacity="0.7" filter="url(#glow)" />
+
+  <!-- Waypoint Dots -->
+  <circle cx="80" cy="220" r="5" fill="#38ef7d" />
+  <circle class="pulse-dot" cx="80" cy="220" fill="none" stroke="#38ef7d" stroke-width="2" />
+  <text x="75" y="245" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="12" font-weight="bold">DEP (KJFK)</text>
+
+  <circle cx="400" cy="115" r="4" fill="#38ef7d" />
+  <text x="380" y="100" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="11">WAYPOINT (NATHL)</text>
+
+  <circle cx="1050" cy="150" r="5" fill="#00f2fe" />
+  <circle class="pulse-dot" cx="1050" cy="150" fill="none" stroke="#00f2fe" stroke-width="2" />
+  <text x="1030" y="180" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="12" font-weight="bold">ARR (EGLL)</text>
+
+  <!-- Animated Jet -->
+  <g class="jet-icon" transform="translate(80, 220)">
+    <path d="M15 0 L-10 -12 L-5 -3 L-20 -5 L-22 -2 L-12 0 L-22 2 L-20 5 L-5 3 L-10 12 Z" fill="#ffffff" filter="url(#glow)"/>
+  </g>
+
+  <!-- Main Title & Subtitle -->
+  <text x="75" y="110" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="44" font-weight="800" letter-spacing="1">
+    AWESOME FLIGHT DISPATCH ✈️
+  </text>
+  
+  <text x="75" y="148" fill="#38ef7d" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="600" letter-spacing="2">
+    TOP FLIGHT PLANNING, DISPATCH &amp; ROUTE OPTIMIZATION ECOSYSTEM
+  </text>
+
+  <text x="75" y="180" fill="#94a3b8" font-family="system-ui, -apple-system, sans-serif" font-size="14">
+    Curated SaaS Platforms • Open-Source Navigation Engines • Trajectory Optimization • Aviation Data
+  </text>
+
+  <!-- Bottom Accent Bar -->
+  <rect x="0" y="292" width="1200" height="8" fill="url(#lineGrad)" />
+</svg>
